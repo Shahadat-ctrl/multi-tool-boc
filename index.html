@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type='text/javascript' src='//pl26549874.profitableratecpm.com/e3/01/3a/e3013a66865a43a6145da06856300756.js'></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All in One Snick Tools</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+
+    :root {
+      --primary: #ffeb3b; /* Old primary, kept for other elements if needed */
+      --secondary: #00ccff; /* Old secondary, kept for other elements if needed */
+      --header-grad-start: #ffeb3b; /* New: Yellow */
+      --header-grad-end: #ff9800;   /* New: Orange */
+      --background: #0a0a10;
+      --surface: #1a1a25;
+      --border: rgba(255, 255, 255, 0.1);
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --glow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--secondary); /* Glow still uses old primary/secondary, can be adjusted if needed */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      /* Updated background gradient using new variables */
+      background: linear-gradient(135deg, var(--header-grad-start), var(--header-grad-end));
+      padding: 2rem;
+      text-align: center;
+      /* The box-shadow still uses the old glow variables, adjust if needed */
+      /* box-shadow: 0 0 10px var(--header-grad-start), 0 0 20px var(--header-grad-start), 0 0 30px var(--header-grad-end); */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Using a simpler shadow for better contrast with yellow/orange */
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      /* Adjusted text shadow for better readability on yellow/orange */
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      /* Consider changing animation color or removing if it clashes */
+      /* animation: glowText 2s ease-in-out infinite; */
+       color: var(--background); /* Make header text dark for better contrast */
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    /* Initially hide the grid for other tools */
+    #otherTools {
+        display: none;
+    }
+
+    .tool-card {
+      background: linear-gradient(145deg, var(--surface), #252535);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(10px);
+      display: flex; /* Use flex for internal layout */
+      flex-direction: column;
+    }
+
+    /* Ensure hidden tool cards are initially hidden, even if grid is shown */
+    #otherTools .tool-card {
+        display: none; /* Will be overridden by JS */
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--glow);
+    }
+
+    .tool-card h3 {
+      color: var(--primary); /* Still using the old cyan-like color */
+      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      animation: glowText 2s ease-in-out infinite; /* Still using the old glow animation */
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    textarea {
+        font-family: 'Inter', sans-serif;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--glow);
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Buttons still use old gradient */
+      color: var(--background);
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: transform 0.2s, opacity 0.2s;
+      position: relative;
+      overflow: hidden;
+      min-height: 44px;
+    }
+    button:disabled { /* Style for disabled button during loading */
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
+      transform: scale(1.05);
+      opacity: 0.95;
+      box-shadow: var(--glow);
+    }
+
+    button:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s;
+    }
+
+    button:hover:not(:disabled)::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .output-area {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 1rem; /* Default padding */
+      margin-top: 1rem;
+      position: relative;
+      min-height: 60px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    /* Specific padding & alignment for QR code result area */
+    #qrResult {
+        padding: 20px; /* General padding inside the container */
+        background: var(--surface); /* Background for the container */
+        align-items: center; /* Center items horizontally */
+    }
+
+
+    .output-area textarea {
+        background: transparent;
+        border: none;
+        resize: vertical;
+        min-height: 80px;
+    }
+    .output-area p {
+        color: var(--text-secondary);
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .category-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary); /* Still using the old cyan-like color */
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      animation: glowText 2s ease-in-out infinite; /* Still using the old glow animation */
+    }
+
+    .loading {
+      position: relative;
+      pointer-events: none;
+      /* opacity set via :disabled style */
+    }
+
+    .loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      border: 3px solid var(--primary); /* Spinner uses old primary color */
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 0.8s linear infinite;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Adjusted glow text - might need tweaking for yellow/orange theme or removal */
+    @keyframes glowText {
+      0%, 100% { text-shadow: 0 0 5px var(--primary); }
+      50% { text-shadow: 0 0 15px var(--primary), 0 0 25px var(--secondary); }
+    }
+
+    .file-input {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .file-input input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .file-input button {
+      width: auto;
+      display: inline-flex;
+      position: relative;
+      z-index: 0;
+    }
+
+    .file-name {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: block;
+      min-height: 1.2em;
+    }
+    <script type='text/javascript' src='//pl26549874.profitableratecpm.com/e3/01/3a/e3013a66865a43a6145da06856300756.js'></script>
+
+    /* General preview image style (used by compressor etc.) */
+    .preview-image {
+      max-width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: 8px; /* General roundness for other images */
+      margin-top: 1rem;
+      border: 1px solid var(--border); /* Default border for other previews */
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---- QR Code Preview Specific Style START ---- */
+    /* Remove visual border from QR code image itself, as the border
+       will be part of the image data generated via Canvas. */
+    #qrResult .preview-image {
+        border: none; /* No visual border needed */
+        margin-top: 0; /* Reset margin if container padding handles spacing */
+        border-radius: 0; /* No rounding needed for image with built-in border */
+        box-sizing: border-box;
+        /* max-width/max-height are inherited from .preview-image */
+    }
+    /* ---- QR Code Preview Specific Style END ---- */
+
+
+    #bgOutput {
+        margin-top: 0;
+    }
+
+
+    .download-btn {
+      display: inline-flex;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Download button uses old gradient */
+      color: var(--background);
+      border-radius: 8px;
+      font-weight: 600;
+      transition: transform 0.2s, opacity 0.2s;
+      border: none;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      margin-top: 1rem; /* Spacing from image */
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.95;
+      box-shadow: var(--glow); /* Uses old glow */
+    }
+
+    .center-content {
+        text-align: center;
+        /* margin-top: 1rem; */ /* Replaced by margin on download button */
+        width: 100%;
+    }
+
+    .category-menu {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .category-menu h3 {
+      color: var(--primary); /* Still uses the old cyan-like color */
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      animation: glowText 2s ease-in-out infinite; /* Still uses the old glow animation */
+    }
+
+    .category-menu ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .category-menu li {
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      text-align: center;
+    }
+
+    .category-menu li:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: var(--glow); /* Uses old glow */
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff4444;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.3s ease-out, fadeOut 0.5s ease-out 3s forwards; /* Add fadeOut */
+      z-index: 1000;
+      opacity: 0.95;
+    }
+    .notification.success {
+        background: #44cc44;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 0.95; }
+    }
+    /* Fade out animation */
+     @keyframes fadeOut {
+        to { opacity: 0; transform: translateX(100%); }
+    }
+
+
+    .qr-options {
+      margin-bottom: 1rem;
+    }
+
+    .qr-options select {
+      margin-bottom: 1rem;
+    }
+
+    .qr-options .dynamic-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>All in One Snick Tools</h1>
+  </header>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : '3c913a9fbb634e102384ccb448a8bfdc',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/3c913a9fbb634e102384ccb448a8bfdc/invoke.js"></script>
+  <div class="container">
+    <!-- Top Tools -->
+    <div class="category-title">Featured Tools</div>
+    <div class="tools-grid">
+      <!-- QR Code Generator -->
+      <div class="tool-card">
+        <h3>🔗 QR Code Generator</h3>
+        <div class="qr-options">
+          <select id="qrType" onchange="updateQRInputs()" aria-label="Select QR code type">
+            <option value="url">URL</option>
+            <option value="vcard">vCard</option>
+            <option value="wifi">Wi-Fi</option>
+            <option value="social">Social Media</option>
+          </select>
+          <div class="dynamic-inputs" id="qrInputs"></div>
+          <select id="qrSize" aria-label="Select QR code size">
+            <option value="130">130x130</option>
+            <option value="256">250x250</option>
+            <option value="490">500×500</option>
+          </select>
+        </div>
+        <button onclick="generateQR()" aria-label="Generate QR code">Generate QR</button>
+        <!-- Output area with specific ID for padding and centering -->
+        <div class="output-area" id="qrResult">
+           <!-- Content generated by JS -->
+        </div>
+      </div>
+	
+<script type='text/javascript' src='//pl26551000.profitableratecpm.com/bd/d9/a1/bdd9a15c2b00c386b55203cdcf971895.js'></script>
+
+
+      <!-- Image Compressor -->
+      <div class="tool-card">
+        <h3>📷 Image Compressor</h3>
+        <div class="file-input">
+          <button aria-label="Choose image file">Choose Image</button>
+          <input type="file" id="compressInput" accept="image/jpeg, image/png" aria-label="Select image to compress">
+          <div class="file-name" id="compressFileName">No file selected</div>
+        </div>
+        <div class="input-group">
+          <label for="qualitySlider">Quality: <span id="qualityValue">70%</span></label>
+          <input type="range" id="qualitySlider" min="0.1" max="1" step="0.05" value="0.7" aria-label="Adjust image compression quality">
+        </div>
+        <button onclick="compressImage()" aria-label="Compress image">Compress Image</button>
+        <div class="output-area" id="compressResult"></div>
+      </div>
+    </div>
+
+
+    <script type='text/javascript' src='//pl26551000.profitableratecpm.com/bd/d9/a1/bdd9a15c2b00c386b55203cdcf971895.js'></script>
+    
+    <!-- Category Menu -->
+    <div class="category-title">All Tools</div>
+    <div class="category-menu">
+      <h3>Tool Categories</h3>
+      <ul id="toolList">
+        <!-- Ensure onclick calls the correct function -->
+        <li onclick="showTool('base64')" role="button" tabindex="0" aria-label="Show Image to Base64 tool">Image to Base64</li>
+        <li onclick="showTool('bgRemover')" role="button" tabindex="0" aria-label="Show Background Remover tool">Background Remover</li>
+        <li onclick="showTool('colorPicker')" role="button" tabindex="0" aria-label="Show Color Picker tool">Color Picker</li>
+        <li onclick="showTool('passwordGen')" role="button" tabindex="0" aria-label="Show Password Generator tool">Password Generator</li>
+        <li onclick="showTool('textToBinary')" role="button" tabindex="0" aria-label="Show Text to Binary Converter tool">Text to Binary</li>
+        <li onclick="showTool('spaceRemover')" role="button" tabindex="0" aria-label="Show Space Remover tool">Space Remover</li>
+      </ul>
+    </div>
+
+    <script async="async" data-cfasync="false" src="//pl26549920.profitableratecpm.com/9449b5f38859baba4a7bec3bd04e8088/invoke.js"></script>
+<div id="container-9449b5f38859baba4a7bec3bd04e8088"></div>
+    
+    <!-- Other Tools (Hidden by Default) -->
+    <!-- Container ID is crucial -->
+    <div class="tools-grid" id="otherTools">
+
+      <!-- Image to Base64 -->
+      <!-- Card ID must match the one in showTool() -->
+      <div class="tool-card" id="base64">
+        <h3>🔢 Image to Base64</h3>
+        <div class="file-input">
+          <button aria-label="Choose image file">Choose Image</button>
+          <input type="file" id="base64Input" accept="image/*" aria-label="Select image to convert to Base64">
+          <div class="file-name" id="base64FileName">No file selected</div>
+        </div>
+        <button onclick="encodeBase64()" aria-label="Convert image to Base64">Convert</button>
+        <div class="output-area">
+          <textarea id="base64Output" rows="4" readonly aria-label="Base64 encoded output"></textarea>
+        </div>
+      </div>
+
+      <!-- Background Remover -->
+      <!-- Card ID must match the one in showTool() -->
+      <div class="tool-card" id="bgRemover">
+        <h3>🎭 Background Remover</h3>
+        <div class="file-input">
+          <button aria-label="Choose image file">Choose Image</button>
+          <input type="file" id="bgInput" accept="image/jpeg, image/png" aria-label="Select image to remove background">
+          <div class="file-name" id="bgFileName">No file selected</div>
+        </div>
+        <!-- Button ID added for easier selection -->
+        <button id="removeBgBtn" onclick="removeBg()" aria-label="Remove image background">Remove Background</button>
+        <div class="output-area">
+          <img id="bgOutput" class="preview-image" alt="Background removed image" style="display: none;">
+           <!-- Wrapper initially hidden -->
+          <div class="center-content" style="display: none;">
+              <a id="bgDownload" class="download-btn" aria-label="Download background removed image">Download</a>
+          </div>
+        </div>
+      </div>
+	
+
+      <!-- Color Picker -->
+      <!-- Card ID must match the one in showTool() -->
+      <div class="tool-card" id="colorPicker">
+        <h3>🎨 Color Picker</h3>
+        <input type="color" id="colorInput" value="#ffeb3b" aria-label="Select a color">
+        <div class="output-area">
+          <div id="colorValue" aria-live="polite" style="padding: 1rem; border-radius: 8px;">Select a color</div>
+        </div>
+      </div>
+
+      <!-- Password Generator -->
+      <!-- Card ID must match the one in showTool() -->
+      <div class="tool-card" id="passwordGen">
+        <h3>🔐 Password Generator</h3>
+        <div class="input-group">
+          <label for="passwordSlider">Length: <span id="passwordLength">12</span></label>
+          <input type="range" id="passwordSlider" min="8" max="32" value="12" aria-label="Adjust password length">
+        </div>
+        <button onclick="generatePassword()" aria-label="Generate password">Generate Password</button>
+        <div class="output-area">
+          <input type="text" id="passwordOutput" readonly aria-label="Generated password">
+        </div>
+      </div>
+
+      <!-- Text to Binary Converter -->
+      <!-- Card ID must match the one in showTool() -->
+      <div class="tool-card" id="textToBinary">
+        <h3>📜 Text to Binary Converter</h3>
+        <textarea id="binaryInput" rows="4" placeholder="Enter text to convert..." aria-label="Enter text to convert to binary"></textarea>
+        <button onclick="convertToBinary()" aria-label="Convert text to binary">Convert to Binary</button>
+        <div class="output-area">
+          <textarea id="binaryOutput" rows="4" readonly aria-label="Binary output"></textarea>
+        </div>
+      </div>
+
+      <!-- Space Remover -->
+      <!-- Card ID must match the one in showTool() -->
+      <div class="tool-card" id="spaceRemover">
+          <h3>🧹 Space Remover</h3>
+          <textarea id="spaceInput" rows="4" placeholder="Enter text to clean..." aria-label="Enter text for space removal"></textarea>
+          <div class="input-group">
+              <label for="spaceRemovalType" style="display: block; margin-bottom: 0.5rem;">Removal Type:</label>
+              <select id="spaceRemovalType" aria-label="Select space removal method">
+                  <option value="extra">Remove Extra Spaces Between Words</option>
+                  <option value="trim">Trim Leading/Trailing Spaces</option>
+                  <option value="all">Remove All Spaces</option>
+              </select>
+          </div>
+          <button onclick="removeSpaces()" aria-label="Remove spaces from text">Clean Text</button>
+          <div class="output-area">
+              <textarea id="spaceOutput" rows="4" readonly aria-label="Cleaned text output"></textarea>
+          </div>
+      </div>
+
+    </div> <!-- End of #otherTools grid -->
+  </div> <!-- End of .container -->
+
+  <script>
+    // --- Utility Functions ---
+    function showNotification(message, type = 'error') {
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(n => n.remove()); // Remove old ones first
+
+        const notification = document.createElement('div');
+        notification.className = `notification ${type === 'success' ? 'success' : ''}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        // Auto remove after timeout
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)'; // Slide out
+            setTimeout(() => notification.remove(), 500); // Remove from DOM after transition
+        }, 3000);
+    }
+
+    function getContrastYIQ(hexcolor){
+        hexcolor = hexcolor.replace("#", "");
+        if(hexcolor.length === 3) hexcolor = hexcolor.split('').map(char => char + char).join('');
+        if(hexcolor.length !== 6) return 'var(--text-primary)';
+        const r = parseInt(hexcolor.substr(0,2),16);
+        const g = parseInt(hexcolor.substr(2,2),16);
+        const b = parseInt(hexcolor.substr(4,2),16);
+        const yiq = ((r*299)+(g*587)+(b*114))/1000;
+        return (yiq >= 128) ? 'var(--background)' : 'var(--text-primary)';
+    }
+
+    // --- Tool Specific Functions ---
+
+    // QR Code Generator
+    function updateQRInputs() {
+        const qrType = document.getElementById('qrType').value;
+        const qrInputs = document.getElementById('qrInputs');
+        qrInputs.innerHTML = '';
+        switch (qrType) {
+            case 'url': qrInputs.innerHTML = `<input type="url" id="qrInput" placeholder="Enter URL (e.g., https://...)" aria-label="Enter URL for QR code">`; break;
+            case 'vcard': qrInputs.innerHTML = `<input type="text" id="vcardName" placeholder="Full Name" aria-label="Enter full name"><input type="tel" id="vcardPhone" placeholder="Phone" aria-label="Enter phone"><input type="email" id="vcardEmail" placeholder="Email" aria-label="Enter email">`; break;
+            case 'wifi': qrInputs.innerHTML = `<input type="text" id="wifiSSID" placeholder="Network Name (SSID)" aria-label="Enter SSID"><input type="password" id="wifiPassword" placeholder="Password" aria-label="Enter password"><select id="wifiType" aria-label="Encryption"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">No Password</option></select>`; break;
+            case 'social': qrInputs.innerHTML = `<input type="url" id="socialLink" placeholder="Social Media URL" aria-label="Enter social URL">`; break;
+        }
+    }
+    async function generateQR() {
+        const qrType = document.getElementById('qrType').value;
+        let data = '';
+        try {
+            // Gather data based on type
+            switch (qrType) {
+                case 'url': data = document.getElementById('qrInput')?.value; if (!data) throw new Error('URL required.'); break;
+                case 'vcard': const n = document.getElementById('vcardName')?.value, p = document.getElementById('vcardPhone')?.value, e = document.getElementById('vcardEmail')?.value; if (!n && !p && !e) throw new Error('vCard details required.'); data = `BEGIN:VCARD\nVERSION:3.0\nN:${n||''}\nTEL:${p||''}\nEMAIL:${e||''}\nEND:VCARD`; break;
+                case 'wifi': const s = document.getElementById('wifiSSID')?.value, pw = document.getElementById('wifiPassword')?.value, t = document.getElementById('wifiType')?.value; if (!s) throw new Error('SSID required.'); data = `WIFI:S:${s};T:${t};P:${pw||''};;`; break;
+                case 'social': data = document.getElementById('socialLink')?.value; if (!data) throw new Error('Social URL required.'); break;
+            }
+             // Basic URL check and auto-prefixing
+            if ((qrType === 'url' || qrType === 'social') && data && !data.startsWith('http') && !data.includes('://')) {
+                 console.warn("URL missing protocol. Prepending https://");
+                 data = 'https://' + data;
+            }
+        } catch (e) { return showNotification(e.message); }
+
+        const size = document.getElementById('qrSize').value;
+        const qrResult = document.getElementById('qrResult');
+        const button = qrResult.parentElement.querySelector('button[onclick="generateQR()"]');
+        if (!button) return console.error("Generate QR button not found");
+
+        qrResult.innerHTML = ''; // Clear previous result
+        button.classList.add('loading');
+        button.disabled = true;
+
+        try {
+            // Fetch QR code from API with minimal margin
+            const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(data)}&size=${size}x${size}&format=png&margin=1`;
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`QR generation failed (HTTP ${response.status})`);
+
+            const originalBlob = await response.blob();
+
+            // --- Canvas Manipulation to Add ~0.2 inch (20px) White Border ---
+            const pixelsPerInch = 96; // Standard assumption
+            const desiredMarginInches = 0.2;
+            const borderSize = Math.round(desiredMarginInches * pixelsPerInch); // Calculate pixels, approx 19.2 -> 20px
+            // console.log(`Calculated border size: ${borderSize}px`); // For debugging
+
+            const originalUrl = URL.createObjectURL(originalBlob);
+            const img = new Image();
+
+            // Wait for the original image to load
+            await new Promise((resolve, reject) => {
+                img.onload = resolve;
+                img.onerror = (err) => reject(new Error("Failed to load QR image for processing"));
+                img.src = originalUrl;
+            });
+
+            const originalWidth = img.width;
+            const originalHeight = img.height;
+
+            const canvas = document.createElement('canvas');
+            const newWidth = originalWidth + borderSize * 2;
+            const newHeight = originalHeight + borderSize * 2;
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+            const ctx = canvas.getContext('2d');
+
+            // 1. Fill the canvas with white background
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, newWidth, newHeight);
+
+            // 2. Draw the original QR code image onto the center
+            ctx.drawImage(img, borderSize, borderSize, originalWidth, originalHeight);
+
+            // Clean up the temporary URL
+            URL.revokeObjectURL(originalUrl);
+
+            // 3. Convert the canvas content to a new PNG blob
+            const finalBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            if (!finalBlob) {
+                throw new Error("Canvas to Blob conversion failed");
+            }
+            const finalUrl = URL.createObjectURL(finalBlob); // URL for the image *with* the border
+            // --- End Canvas Manipulation ---
+
+
+            const fileName = `MS_QR_${Date.now()}_bordered.png`; // Update filename
+
+            // Output using the finalUrl (image with built-in border)
+            qrResult.innerHTML = `
+                <img src="${finalUrl}" class="preview-image" alt="Generated QR code with white border">
+                <a href="${finalUrl}" download="${fileName}" class="download-btn" aria-label="Download QR code">Download QR</a>`;
+
+            showNotification('QR Code generated with border!', 'success');
+
+        } catch (error) {
+            console.error("QR Error:", error);
+            showNotification(error.message || 'Failed to generate QR code');
+            qrResult.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+        } finally {
+            button.classList.remove('loading');
+            button.disabled = false;
+        }
+    }
+
+    // Image Compressor
+    async function compressImage() {
+        const fileInput = document.getElementById('compressInput');
+        const file = fileInput.files[0];
+        const quality = parseFloat(document.getElementById('qualitySlider').value);
+        if (!file) return showNotification('Please select an image');
+        if (!['image/jpeg', 'image/png'].includes(file.type)) return showNotification('Please select JPEG/PNG');
+
+        const resultArea = document.getElementById('compressResult');
+        const button = resultArea.parentElement.querySelector('button[onclick="compressImage()"]');
+        if (!button) return console.error("Compress Image button not found");
+
+        resultArea.innerHTML = '';
+        button.classList.add('loading');
+        button.disabled = true;
+
+        try {
+            const readFileAsDataURL = (f) => new Promise((res, rej) => {
+                const r = new FileReader(); r.onerror = rej; r.onload = () => res(r.result); r.readAsDataURL(f);
+            });
+            const processImage = (url, qual, origFile) => new Promise((res, rej) => {
+                const img = new Image(); img.onerror = rej;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height;
+                    canvas.getContext('2d').drawImage(img, 0, 0);
+                    canvas.toBlob(blob => {
+                        if (!blob) return rej(new Error("Canvas blob failed"));
+                        if (blob.size < origFile.size) res({ url: URL.createObjectURL(blob), blob, wasCompressed: true, origSize: origFile.size, newSize: blob.size });
+                        else res({ url, blob: origFile, wasCompressed: false, origSize: origFile.size, newSize: origFile.size });
+                    }, 'image/jpeg', qual);
+                }; img.src = url;
+            });
+
+            const dataUrl = await readFileAsDataURL(file);
+            const result = await processImage(dataUrl, quality, file);
+            const origKB = (result.origSize / 1024).toFixed(2);
+            const newKB = (result.newSize / 1024).toFixed(2);
+            let downloadUrl = result.url, downloadName, msg;
+
+            if (result.wasCompressed) {
+                downloadName = `compressed_${file.name.replace(/\.[^/.]+$/, "")}.jpg`;
+                msg = `Original: ${origKB} KB | Compressed: ${newKB} KB`;
+                showNotification('Image compressed!', 'success');
+            } else {
+                downloadName = file.name;
+                msg = `Original: ${origKB} KB (Not smaller)`;
+                if (result.blob instanceof File) downloadUrl = URL.createObjectURL(result.blob);
+                showNotification('Compression did not reduce size', 'success');
+            }
+            resultArea.innerHTML = `
+                <img src="${result.url}" class="preview-image" alt="${result.wasCompressed ? 'Compressed' : 'Original'} image">
+                <p>${msg}</p>
+                <div class="center-content">
+                    <a href="${downloadUrl}" download="${downloadName}" class="download-btn">Download Image</a>
+                </div>`;
+        } catch (error) {
+            console.error("Compression Error:", error);
+            showNotification('Failed to process image.');
+            resultArea.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+        } finally {
+            button.classList.remove('loading');
+            button.disabled = false;
+        }
+    }
+
+    // Base64 Encoder
+    async function encodeBase64() {
+        const fileInput = document.getElementById('base64Input');
+        const file = fileInput.files[0];
+        if (!file) return showNotification('Please select an image');
+        if (!file.type.startsWith('image/')) return showNotification('Invalid file type');
+
+        const outputArea = document.getElementById('base64Output');
+        const button = outputArea.parentElement.parentElement.querySelector('button[onclick="encodeBase64()"]'); // Find button in card
+        if (!button) return console.error("Encode Base64 button not found");
+
+        outputArea.value = '';
+        button.classList.add('loading');
+        button.disabled = true;
+
+        try {
+            const reader = new FileReader();
+            reader.onload = () => {
+                outputArea.value = reader.result;
+                showNotification('Image converted to Base64!', 'success');
+            };
+            reader.onerror = () => { throw new Error('File reading error'); };
+            reader.readAsDataURL(file);
+        } catch (error) {
+            console.error("Base64 Error:", error);
+            showNotification('Failed to convert to Base64');
+        } finally {
+            button.classList.remove('loading');
+            button.disabled = false;
+        }
+    }
+
+  
+    // Background Remover
+    async function removeBg() {
+        const fileInput = document.getElementById('bgInput');
+        const button = document.getElementById('removeBgBtn');
+        const outputImg = document.getElementById('bgOutput');
+        const downloadLink = document.getElementById('bgDownload');
+        const downloadWrapper = downloadLink?.parentElement;
+
+        if (!fileInput || !button || !outputImg || !downloadLink || !downloadWrapper) {
+            console.error("BG Remover UI elements missing! Check IDs.", { fileInput, button, outputImg, downloadLink, downloadWrapper });
+            return showNotification("UI Error: Background Remover tool.");
+        }
+
+        const file = fileInput.files[0];
+        if (!file) return showNotification('Please select an image');
+        if (!['image/jpeg', 'image/png'].includes(file.type)) return showNotification('Please select JPEG/PNG');
+
+        const REMOVE_BG_API_KEY = 'qLfRtLd6MebVzGTuFcQ7Yv9j'; // Replace with your actual key
+        if (!REMOVE_BG_API_KEY || REMOVE_BG_API_KEY === 'YOUR_REMOVE_BG_API_KEY' || REMOVE_BG_API_KEY.length < 10) {
+             // Show a more user-friendly message if the key is missing/placeholder
+             if (REMOVE_BG_API_KEY === 'YOUR_REMOVE_BG_API_KEY' || !REMOVE_BG_API_KEY) {
+                 return showNotification('Feature Unavailable: API Key Required.');
+             }
+             // Generic error if key looks invalid but isn't the placeholder
+             return showNotification('Remove.bg API Key configuration error.');
+        }
+
+
+        outputImg.style.display = 'none'; outputImg.src = '';
+        downloadWrapper.style.display = 'none'; // Hide download section
+        button.classList.add('loading'); button.disabled = true;
+
+        try {
+            const formData = new FormData();
+            formData.append('image_file', file); formData.append('size', 'auto');
+
+            const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+                method: 'POST', headers: { 'X-Api-Key': REMOVE_BG_API_KEY }, body: formData,
+            });
+
+            if (!response.ok) {
+                 let errorMsg = `BG removal failed (HTTP ${response.status})`;
+                 if (response.status === 400) errorMsg = 'Remove.bg: Bad request (check image).';
+                 else if (response.status === 402) errorMsg = 'Remove.bg: Insufficient credits.';
+                 else if (response.status === 403) errorMsg = 'Remove.bg: API Key invalid.';
+                 else if (response.status === 429) errorMsg = 'Remove.bg: Rate limit exceeded.';
+                 try {
+                     const errorData = await response.json();
+                     if (errorData?.errors?.[0]?.title) { errorMsg += ` - ${errorData.errors[0].title}`; }
+                 } catch (e) { /* Ignore */ }
+                 throw new Error(errorMsg);
+             }
+
+            const blob = await response.blob();
+            if (!blob.type.startsWith('image/')) throw new Error('Received non-image data');
+            const url = URL.createObjectURL(blob);
+
+            outputImg.src = url; outputImg.style.display = 'block';
+            downloadLink.href = url;
+            const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+            downloadLink.download = `${baseName}_no_bg.png`;
+            downloadWrapper.style.display = 'block'; // Show download button wrapper
+
+            showNotification('Background removed!', 'success');
+        } catch (error) {
+            console.error("Remove BG Error:", error);
+            showNotification(error.message || 'Failed to remove background.');
+            outputImg.style.display = 'none'; outputImg.src = '';
+            downloadWrapper.style.display = 'none'; // Ensure hidden on error
+        } finally {
+            button.classList.remove('loading'); button.disabled = false;
+        }
+    }
+
+    // Color Picker
+    function updateColorDisplay(color) {
+        const colorValueDiv = document.getElementById('colorValue');
+        if (colorValueDiv) {
+            colorValueDiv.textContent = `Selected Color: ${color}`;
+            colorValueDiv.style.background = color;
+            colorValueDiv.style.color = getContrastYIQ(color);
+        }
+    }
+    document.getElementById('colorInput')?.addEventListener('input', function() { updateColorDisplay(this.value); });
+    document.addEventListener('DOMContentLoaded', () => {
+        const initialColor = document.getElementById('colorInput')?.value;
+        if(initialColor) updateColorDisplay(initialColor);
+    });
+
+
+    // Password Generator
+    function generatePassword() {
+        const length = parseInt(document.getElementById('passwordSlider')?.value || '12');
+        const output = document.getElementById('passwordOutput');
+        if(!output) return;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';
+        let password = '';
+        if(length <= 0 || chars.length === 0) { output.value = ''; return; }
+        // Use crypto for better randomness
+        if (window.crypto && window.crypto.getRandomValues) {
+            const randomValues = new Uint32Array(length);
+            window.crypto.getRandomValues(randomValues);
+            for (let i = 0; i < length; i++) password += chars.charAt(randomValues[i] % chars.length);
+        } else {
+            // Fallback (less secure)
+            console.warn("Using Math.random() for password generation - less secure.");
+            for (let i = 0; i < length; i++) password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        output.value = password;
+    }
+    document.getElementById('passwordSlider')?.addEventListener('input', function(e) {
+        const lenSpan = document.getElementById('passwordLength');
+        if(lenSpan) lenSpan.textContent = e.target.value;
+        generatePassword(); // Generate on slider change
+    });
+    document.addEventListener('DOMContentLoaded', generatePassword); // Generate initial password
+
+
+    // Text to Binary Converter
+    function convertToBinary() {
+        const inputText = document.getElementById('binaryInput')?.value;
+        const outputArea = document.getElementById('binaryOutput');
+        if (!outputArea) return;
+        if (!inputText) { outputArea.value = ''; return showNotification('Please enter text'); }
+        try {
+            let binaryString = '';
+            for (let i = 0; i < inputText.length; i++) {
+                const charCode = inputText[i].charCodeAt(0);
+                // Handle multi-byte characters (basic UTF-8 approach)
+                if (charCode < 128) { // ASCII
+                    binaryString += charCode.toString(2).padStart(8, '0') + ' ';
+                } else if (charCode < 2048) { // 2-byte UTF-8
+                    binaryString += ((charCode >> 6) | 192).toString(2).padStart(8, '0') + ' ';
+                    binaryString += ((charCode & 63) | 128).toString(2).padStart(8, '0') + ' ';
+                } else { // 3-byte UTF-8 (basic handling, doesn't cover 4-byte)
+                    binaryString += ((charCode >> 12) | 224).toString(2).padStart(8, '0') + ' ';
+                    binaryString += (((charCode >> 6) & 63) | 128).toString(2).padStart(8, '0') + ' ';
+                    binaryString += ((charCode & 63) | 128).toString(2).padStart(8, '0') + ' ';
+                }
+            }
+            outputArea.value = binaryString.trim();
+            showNotification('Converted to binary!', 'success');
+        } catch (e) { outputArea.value = 'Error'; showNotification('Conversion failed'); }
+    }
+
+    // Space Remover
+    function removeSpaces() {
+        const inputText = document.getElementById('spaceInput')?.value;
+        const type = document.getElementById('spaceRemovalType')?.value;
+        const outputArea = document.getElementById('spaceOutput');
+        if (!outputArea || typeof inputText !== 'string') return;
+        let cleanedText = '';
+        try {
+            switch (type) {
+                case 'all': cleanedText = inputText.replace(/\s+/g, ''); break;
+                case 'trim': cleanedText = inputText.trim(); break;
+                case 'extra': cleanedText = inputText.replace(/\s+/g, ' ').trim(); break;
+                default: cleanedText = inputText;
+            }
+            outputArea.value = cleanedText;
+            if(inputText.length > 0 && inputText !== cleanedText) showNotification('Text cleaned!', 'success');
+            else if (inputText.length === 0) outputArea.value = '';
+        } catch(e) { outputArea.value = 'Error'; showNotification('Cleaning failed'); }
+    }
+
+    // --- Tool Navigation ---
+    function showTool(toolId) {
+        console.log(`Attempting to show tool: ${toolId}`);
+        const otherToolsContainer = document.getElementById('otherTools');
+        const selectedTool = document.getElementById(toolId);
+
+        if (!otherToolsContainer) {
+            console.error("#otherTools container not found!");
+            return;
+        }
+        if (!selectedTool) {
+            console.error(`Tool card with ID '${toolId}' not found!`);
+            return;
+        }
+
+        otherToolsContainer.style.display = 'grid';
+
+        otherToolsContainer.querySelectorAll('.tool-card').forEach(card => {
+            card.style.display = 'none';
+        });
+
+        selectedTool.style.display = 'flex';
+        selectedTool.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // --- Initial Setup ---
+    document.addEventListener('DOMContentLoaded', () => {
+        updateQRInputs(); // Initialize QR inputs
+
+        // Add keyboard accessibility to category menu
+        document.querySelectorAll('.category-menu li[onclick]').forEach(item => {
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    item.click();
+                }
+            });
+        });
+
+        // Update file name display and clear previous results
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const fileNameDisplay = this.parentElement.querySelector('.file-name');
+                if (fileNameDisplay) {
+                    fileNameDisplay.textContent = this.files.length > 0 ? this.files[0].name : 'No file selected';
+                }
+                const card = this.closest('.tool-card');
+                if (card) {
+                    const compressResult = card.querySelector('#compressResult');
+                    const base64Output = card.querySelector('#base64Output');
+                    const bgOutput = card.querySelector('#bgOutput');
+                    const bgDownloadWrapper = card.querySelector('#bgDownload')?.parentElement;
+
+                    if (compressResult) compressResult.innerHTML = '';
+                    if (base64Output) base64Output.value = '';
+                    if (bgOutput) { bgOutput.src = ''; bgOutput.style.display = 'none'; }
+                    if (bgDownloadWrapper) bgDownloadWrapper.style.display = 'none';
+                }
+            });
+        });
+
+        // Quality slider display update
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValue = document.getElementById('qualityValue');
+        if (qualitySlider && qualityValue) {
+            qualitySlider.addEventListener('input', function() {
+                qualityValue.textContent = `${Math.round(this.value * 100)}%`;
+            });
+        }
+    });
+
+  </script>
+  
+  <script type='text/javascript' src='//pl26551000.profitableratecpm.com/bd/d9/a1/bdd9a15c2b00c386b55203cdcf971895.js'></script>
+  
+  <script async="async" data-cfasync="false" src="//pl26549920.profitableratecpm.com/9449b5f38859baba4a7bec3bd04e8088/invoke.js"></script>
+<div id="container-9449b5f38859baba4a7bec3bd04e8088"></div>
+</body>
+</html>:
